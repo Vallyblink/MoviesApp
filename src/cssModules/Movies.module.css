@@ -1,0 +1,44 @@
+.container {
+    background-color: #e6f2ff;
+    padding: 20px;
+}
+
+.input {
+    color: black;
+    border: solid black 2px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 300px;
+}
+
+.button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.moviesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin-top: 40px;
+}
+
+.moviesContainer img {
+    width: 100%;
+    height: auto;
+}
+
+.moviesContainer h3 {
+    margin-top: 0.5rem;
+}
+
+.title {
+    text-align: center;
+    margin-top: 30px;
+    text-transform: uppercase;
+}

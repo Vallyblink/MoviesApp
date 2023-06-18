@@ -1,0 +1,16 @@
+.navLink {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin-left: 20px;
+    font-size: 25px;
+}
+
+.navLink:hover {
+    color: lightgray;
+}
+
+.activeNavLink {
+    margin: auto;
+    color: black;
+}
