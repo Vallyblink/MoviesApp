@@ -1,24 +1,49 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
-import Movies from "pages/Movies";
-import MovieDetails from "pages/MovieDetails";
 import Layout from "components/Layout";
-import HomePage from "pages/HomePage";
-import MovieCredits from "components/MovieCredits";
-import MovieReviews from "components/MovieReviews";
+
+const LazyHomePage = lazy(() => import('./pages/HomePage'));
+const LazyMovies = lazy(() => import('./pages/Movies'));
+const LazyMovieDetails = lazy(() => import('./pages/MovieDetails'));
+const LazyMovieCredits = lazy(() => import('./components/MovieCredits'));
+const LazyMovieReviews = lazy(() => import('./components/MovieReviews'));
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />} >
-        <Route index element={<HomePage />} />
-        <Route path="movies" element={<Movies />} />
-        <Route path="movies/:id" element={<MovieDetails />}>
-          <Route path="credits" element={<MovieCredits />} />
-          <Route path="reviews" element={<MovieReviews />} />
+        <Route index element={(
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyHomePage />
+          </Suspense>
+        )} />
+        <Route path="movies" element={(
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyMovies />
+          </Suspense>
+        )} />
+        <Route path="movies/:id" element={(
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyMovieDetails />
+          </Suspense>
+        )}>
+          <Route path="credits" element={(
+            <Suspense fallback={<div>Loading...</div>}>
+              <LazyMovieCredits />
+            </Suspense>
+          )} />
+          <Route path="reviews" element={(
+            <Suspense fallback={<div>Loading...</div>}>
+              <LazyMovieReviews />
+            </Suspense>
+          )} />
         </Route>
-        <Route path="*" element={<HomePage />} />
+        <Route path="*" element={(
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyHomePage />
+          </Suspense>
+        )} />
       </Route>
     </Routes>
   );
